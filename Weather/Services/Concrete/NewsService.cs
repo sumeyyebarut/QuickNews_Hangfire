@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Org.BouncyCastle.Asn1.Ocsp;
 using QuickNews.Model;
 using QuickNews.Services.Abstract;
 using System.Net;
@@ -29,8 +31,7 @@ namespace QuickNews.Services.Concrete
                     if (result.Result.StatusCode != HttpStatusCode.OK)
                         throw new Exception(result.Result.RequestMessage.ToString());
 
-                    if (result.Result.Content is object &&
-                        result.Result.Content.Headers.ContentType.MediaType == "application/json")
+                    if (result.Result.Content is object && result.Result.Content.Headers.ContentType.MediaType == "application/json")
                     {
                         var contentStream = await result.Result.Content.ReadAsStreamAsync();
                         var streamReader = new StreamReader(contentStream);

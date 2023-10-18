@@ -2,6 +2,6 @@
 {
     public interface IQuickNewsService
     {
-        bool CurrencyReporter();
+        bool NewsReport();
     }
 }

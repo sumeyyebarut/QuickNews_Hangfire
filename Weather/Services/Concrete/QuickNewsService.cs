@@ -1,7 +1,9 @@
-﻿using QuickNews.Services.Abstract;
+﻿using Microsoft.AspNetCore.Mvc;
+using QuickNews.Services.Abstract;
 
 namespace QuickNews.Services.Concrete
 {
+   
     public class QuickNewsService : IQuickNewsService
     {
         private INewsService _newsService;
@@ -12,11 +14,12 @@ namespace QuickNews.Services.Concrete
             _newsService = newsService;
             _emailService = emailService;
         }
-        public bool CurrencyReporter()
+        public bool NewsReport()
         {
-            var currencyList = _newsService.GetQuickNews();
+            var newsList = _newsService.GetQuickNews();
             bool isSuccess = _emailService.SendReport(currencyList);
             return isSuccess;
         }
+       
     }
 }
